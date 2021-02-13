@@ -4,6 +4,9 @@ import styled, { css } from "styled-components";
 import get from "lodash/get";
 import PropTypes from "prop-types";
 
+import { propToStyle } from "../../../theme/utils/propToStyle";
+import { breakpointsMedia } from "../../../theme/utils/breakpointsMedia";
+
 const paragraph1 = css`
   ${({ theme }) => css`
     font-size: ${theme.typographyVariants.paragraph1.fontSize};
@@ -20,14 +23,33 @@ const smallestException = css`
   `}
 `;
 
+export const title = css`
+  ${({ theme }) => css`
+    font-size: ${theme.typographyVariants.titleXS.fontSize};
+    font-weight: ${theme.typographyVariants.titleXS.fontWeight};
+    line-height: ${theme.typographyVariants.titleXS.lineHeight};
+  `}
+  ${breakpointsMedia({
+    md: css`
+      ${({ theme }) => css`
+        font-size: ${theme.typographyVariants.title.fontSize};
+        font-weight: ${theme.typographyVariants.title.fontWeight};
+        line-height: ${theme.typographyVariants.title.lineHeight};
+      `}
+    `,
+  })}
+`;
+
 export const TextStyleVariants = {
   smallestException,
   paragraph1,
+  title,
 };
 
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
+  ${propToStyle("textAlign")}
 `;
 
 export function Text({ variant, children, tag, ...props }) {
@@ -46,5 +68,5 @@ Text.defaultProps = {
 Text.propTypes = {
   children: PropTypes.node.isRequired,
   tag: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "p", "li", "a", "span"]),
-  variant: PropTypes.oneOf(["paragraph1", "smallestException"]),
+  variant: PropTypes.oneOf(["paragraph1", "smallestException", "title"]),
 };
