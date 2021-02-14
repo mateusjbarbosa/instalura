@@ -2,7 +2,7 @@ import React from 'react';
 
 import Footer from '../src/components/commons/Footer';
 import Menu from '../src/components/commons/Menu';
-import Text from '../src/components/foundation/Text';
+import { Text } from '../src/components/foundation/Text';
 import Button from '../src/components/commons/Button';
 import Grid from '../src/components/layout/Grid';
 import Box from '../src/components/layout/Box';
