@@ -1,9 +1,11 @@
-import Head from "next/head";
+import React from 'react';
 
-import { ThemeProvider } from "styled-components";
+import Head from 'next/head';
+import { ThemeProvider } from 'styled-components';
+import PropTypes from 'prop-types';
 
-import { GlobalStyle } from "../src/theme/GlobalStyle";
-import theme from "../src/theme";
+import GlobalStyle from '../src/theme/GlobalStyle';
+import theme from '../src/theme';
 
 export default function App({ Component, pageProps }) {
   return (
@@ -17,8 +19,14 @@ export default function App({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
       </ThemeProvider>
     </>
   );
 }
+
+App.propTypes = {
+  Component: PropTypes.node.isRequired,
+  pageProps: PropTypes.node.isRequired,
+};

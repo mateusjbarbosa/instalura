@@ -1,7 +1,7 @@
-import { css } from "styled-components";
-import { breakpoints } from "../index";
+import { css } from 'styled-components';
+import { breakpoints } from '../index';
 
-export function breakpointsMedia(cssByBreakpoint) {
+export default function breakpointsMedia(cssByBreakpoint) {
   const breakpointNames = Object.keys(breakpoints);
 
   return breakpointNames
@@ -11,6 +11,6 @@ export function breakpointsMedia(cssByBreakpoint) {
         @media only screen and (min-width: ${breakpoints[breakpointName]}px) {
           ${cssByBreakpoint[breakpointName]}
         }
-      `
+      `,
     );
 }

@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { MenuWrapper } from "./styles/MenuWrapper";
+import MenuWrapper from './styles/MenuWrapper';
 
-import Logo from "../../../theme/Logo";
-import { Button } from "../Button";
-import { Text } from "../../foundation/Text";
+import Logo from '../../../theme/Logo';
+import Button from '../Button';
+import { Text } from '../../foundation/Text';
 
 const links = [
-  { text: "Home", url: "/" },
-  { text: "Perguntas Frequentes", url: "/faq" },
-  { text: "Sobre", url: "/about" },
+  { text: 'Home', url: '/' },
+  { text: 'Perguntas Frequentes', url: '/faq' },
+  { text: 'Sobre', url: '/about' },
 ];
 
 export default function Menu() {
@@ -19,15 +19,13 @@ export default function Menu() {
         <Logo />
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide>
-        {links.map((link) => {
-          return (
-            <li key={link.url}>
-              <Text variant="smallestException" tag="a" href={link.url}>
-                {link.text}
-              </Text>
-            </li>
-          );
-        })}
+        {links.map((link) => (
+          <li key={link.url}>
+            <Text variant="smallestException" tag="a" href={link.url}>
+              {link.text}
+            </Text>
+          </li>
+        ))}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
         <Button type="button" ghost variant="secondary.main">

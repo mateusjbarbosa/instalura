@@ -1,9 +1,11 @@
-import Footer from "../src/components/commons/Footer";
-import Menu from "../src/components/commons/Menu";
-import { Text } from "../src/components/foundation/Text";
-import { Button } from "../src/components/commons/Button";
-import { Grid } from "../src/components/layout/Grid";
-import { Box } from "../src/components/layout/Box";
+import React from 'react';
+
+import Footer from '../src/components/commons/Footer';
+import Menu from '../src/components/commons/Menu';
+import Text from '../src/components/foundation/Text';
+import Button from '../src/components/commons/Button';
+import Grid from '../src/components/layout/Grid';
+import Box from '../src/components/layout/Box';
 
 export default function Home() {
   return (
@@ -19,7 +21,7 @@ export default function Home() {
     >
       <Menu />
 
-      <Grid.Container marginTop={{ xs: "32px", md: "75px" }}>
+      <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
         <Grid.Row>
           <Grid.Col
             offset={1}
@@ -35,8 +37,8 @@ export default function Home() {
                 tag="h1"
                 color="tertiary.main"
                 textAlign={{
-                  xs: "center",
-                  md: "left",
+                  xs: 'center',
+                  md: 'left',
                 }}
               >
                 Compartilhe momentos e conecte-se com amigos
@@ -46,8 +48,8 @@ export default function Home() {
                 tag="p"
                 color="tertiary.light"
                 textAlign={{
-                  xs: "center",
-                  md: "left",
+                  xs: 'center',
+                  md: 'left',
                 }}
               >
                 Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -58,8 +60,8 @@ export default function Home() {
               <Button
                 variant="primary.main"
                 margin={{
-                  xs: "auto",
-                  md: "initial",
+                  xs: 'auto',
+                  md: 'initial',
                 }}
                 display="block"
               >
@@ -69,7 +71,8 @@ export default function Home() {
           </Grid.Col>
           <Grid.Col value={{ xs: 12, md: 6 }}>
             <img
-              style={{ display: "block", margin: "auto" }}
+              alt="Imagem ilustrativa do Instalura exemplificando o perfil do Cage."
+              style={{ display: 'block', margin: 'auto' }}
               src="https://bootcamp-alura-01-git-modulo01.omariosouto.vercel.app/images/phones.png"
             />
           </Grid.Col>
