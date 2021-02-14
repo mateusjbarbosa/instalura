@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const FooterWrapper = styled.footer`
   padding: 14px;
@@ -26,6 +26,7 @@ const FooterWrapper = styled.footer`
 
 export default function Footer(props) {
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <FooterWrapper {...props}>
       <a href="https://www.alura.com.br/">
         <img
@@ -34,7 +35,8 @@ export default function Footer(props) {
         />
       </a>
       <p>
-        Orgulhosamente criado durante o{" "}
+        Orgulhosamente criado durante o
+        {' '}
         <a href="https://www.alura.com.br/">
           <span>Bootcamp Alura JAM Stack</span>
         </a>

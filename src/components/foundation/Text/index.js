@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
-import styled, { css } from "styled-components";
-import get from "lodash/get";
-import PropTypes from "prop-types";
+import styled, { css } from 'styled-components';
+import get from 'lodash/get';
+import PropTypes from 'prop-types';
 
-import { propToStyle } from "../../../theme/utils/propToStyle";
-import { breakpointsMedia } from "../../../theme/utils/breakpointsMedia";
+import propToStyle from '../../../theme/utils/propToStyle';
+import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 
 const paragraph1 = css`
   ${({ theme }) => css`
@@ -49,11 +49,14 @@ export const TextStyleVariants = {
 const TextBase = styled.span`
   ${({ variant }) => TextStyleVariants[variant]}
   color: ${({ theme, color }) => get(theme, `colors.${color}.color`)};
-  ${propToStyle("textAlign")}
+  ${propToStyle('textAlign')}
 `;
 
-export function Text({ variant, children, tag, ...props }) {
+export function Text({
+  variant, children, tag, ...props
+}) {
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <TextBase as={tag} variant={variant} {...props}>
       {children}
     </TextBase>
@@ -61,12 +64,12 @@ export function Text({ variant, children, tag, ...props }) {
 }
 
 Text.defaultProps = {
-  tag: "span",
-  variant: "paragraph1",
+  tag: 'span',
+  variant: 'paragraph1',
 };
 
 Text.propTypes = {
   children: PropTypes.node.isRequired,
-  tag: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "p", "li", "a", "span"]),
-  variant: PropTypes.oneOf(["paragraph1", "smallestException", "title"]),
+  tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span']),
+  variant: PropTypes.oneOf(['paragraph1', 'smallestException', 'title']),
 };
