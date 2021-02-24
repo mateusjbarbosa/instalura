@@ -1,4 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { Lottie } from '@crello/react-lottie';
+
+import errorAnimation from './animations/error.json';
+import sucessAnimation from './animations/sucess.json';
 
 import Button from '../../../commons/Button';
 import TextField from '../../../forms/TextField';
@@ -6,26 +11,69 @@ import Box from '../../../layout/Box';
 import Grid from '../../../layout/Grid';
 import { Text } from '../../../foundation/Text';
 
+const formStates = {
+  DEFAULT: 'DEFAULT',
+  LOADING: 'LOADING',
+  DONE: 'DONE',
+  ERROR: 'ERROR',
+};
+
 function FormContent() {
-  const [userInfo, setUserInfo] = React.useState({
-    usuario: '',
-    email: '',
+  const [userInfo, setUserInfo] = useState({
+    username: '',
+    name: '',
   });
+
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(formStates.DEFAULT);
+
+  const userDTO = {
+    username: userInfo.username,
+    name: userInfo.name,
+  };
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   function handleChange(event) {
     const fieldName = event.target.getAttribute('name');
+
     setUserInfo({
       ...userInfo,
       [fieldName]: event.target.value,
     });
   }
 
-  const isFormInvalid = userInfo.usuario.length === 0 || userInfo.email.length === 0;
+  const isFormInvalid = userInfo.username.length === 0 || userInfo.name.length === 0;
 
   return (
     <form
       onSubmit={(event) => {
         event.preventDefault();
+
+        setIsFormSubmited(true);
+        setSubmissionStatus(formStates.LOADING);
+
+        fetch('https://instalura-api.vercel.app/api/users', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userDTO),
+        })
+          .then((serverResponse) => {
+            if (serverResponse.ok) {
+              return serverResponse.json();
+            }
+
+            throw new Error('Não foi possível cadastrar o usuário');
+          })
+          .then(() => {
+            setSubmissionStatus(formStates.DONE);
+          })
+          .catch((error) => {
+            setSubmissionStatus(formStates.ERROR);
+            setErrorMessage(error.message);
+          });
       }}
     >
 
@@ -48,9 +96,9 @@ function FormContent() {
 
       <div>
         <TextField
-          placeholder="Email"
-          name="email"
-          value={userInfo.email}
+          placeholder="Nome"
+          name="name"
+          value={userInfo.name}
           onChange={handleChange}
         />
       </div>
@@ -58,8 +106,8 @@ function FormContent() {
       <div>
         <TextField
           placeholder="Usuário"
-          name="usuario"
-          value={userInfo.usuario}
+          name="username"
+          value={userInfo.username}
           onChange={handleChange}
         />
       </div>
@@ -72,6 +120,46 @@ function FormContent() {
       >
         Cadastrar
       </Button>
+
+      {isFormSubmited && submissionStatus === formStates.DONE && (
+        <Box
+          display="flex"
+          justifyContent="start"
+        >
+          <Lottie
+            width="75px"
+            height="75px"
+            config={{ animationData: sucessAnimation, loop: false, autoplay: true }}
+          />
+          <Text
+            variant="paragraph1"
+            tag="p"
+            color="tertiary.main"
+          >
+            Usuário criado com sucesso
+          </Text>
+        </Box>
+      )}
+
+      {isFormSubmited && submissionStatus === formStates.ERROR && (
+        <Box
+          display="flex"
+          justifyContent="start"
+        >
+          <Lottie
+            width="75px"
+            height="75px"
+            config={{ animationData: errorAnimation, loop: false, autoplay: true }}
+          />
+          <Text
+            variant="paragraph1"
+            tag="p"
+            color="tertiary.main"
+          >
+            {errorMessage}
+          </Text>
+        </Box>
+      )}
     </form>
   );
 }
