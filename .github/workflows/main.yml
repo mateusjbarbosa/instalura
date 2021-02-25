@@ -1,0 +1,22 @@
+name: Instalura CI
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+
+jobs:
+  lint:
+    name: Run Lint
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.15.0'
+
+      - name: Dependencies installing
+        run: yarn install
+      - name: Lintering
+        run: yarn lint
