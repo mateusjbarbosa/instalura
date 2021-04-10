@@ -1,9 +1,13 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import MenuWrapper from './styles/MenuWrapper';
 
 import Logo from '../../../theme/Logo';
+
 import Button from '../Button';
+
 import { Text } from '../../foundation/Text';
 
 const links = [
@@ -12,7 +16,7 @@ const links = [
   { text: 'Sobre', url: '/about' },
 ];
 
-export default function Menu() {
+export default function Menu({ onSignUpClick }) {
   return (
     <MenuWrapper>
       <MenuWrapper.LeftSide>
@@ -28,13 +32,17 @@ export default function Menu() {
         ))}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
-        <Button type="button" ghost variant="secondary.main">
+        <Button type="button" ghost variant="secondary.main" href="/app/login">
           Entrar
         </Button>
-        <Button type="button" variant="primary.main">
+        <Button type="button" variant="primary.main" onClick={onSignUpClick}>
           Cadastrar
         </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
   );
 }
+
+Menu.propTypes = {
+  onSignUpClick: PropTypes.func.isRequired,
+};
