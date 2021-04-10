@@ -2,12 +2,22 @@ import React from 'react';
 
 import FAQScreen from '../../src/components/screens/FAQScreen';
 
-export default function FAQPage(props) {
+import websitePageHOC from '../../src/components/wrappers/WebsitePage';
+
+function FAQPage({ faqCategories }) {
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
-    <FAQScreen {...props} />
+    <FAQScreen faqCategories={faqCategories} />
   );
 }
+
+export default websitePageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Perguntas Frequentes',
+    },
+  },
+});
 
 export async function getStaticProps() {
   const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq').then(async (res) => {
@@ -21,3 +31,5 @@ export async function getStaticProps() {
     },
   };
 }
+
+FAQPage.propTypes = FAQScreen.propTypes;
