@@ -7,36 +7,13 @@ import { Text } from '../../foundation/Text';
 import Box from '../../layout/Box';
 import Grid from '../../layout/Grid';
 
-import Menu from '../../commons/Menu';
-import Footer from '../../commons/Footer';
-import Modal from '../../commons/Modal';
-
-import FormRegister from '../../patterns/Forms/Register';
-
 export default function FAQScreen({ faqCategories }) {
-  const [isModalOpen, setModalState] = React.useState(false);
-
   return (
     <Box
       display="flex"
       flexDirection="column"
       flex="1"
     >
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
-        }}
-      >
-        {(modalProps) => (
-          <FormRegister propsDoModal={modalProps} />
-        )}
-      </Modal>
-
-      <Menu
-        onSignUpClick={() => setModalState(true)}
-      />
-
       <Grid.Container style={{ flex: 1 }}>
         <Grid.Row
           marginTop={{ xs: '32px', md: '100px' }}
@@ -105,8 +82,6 @@ export default function FAQScreen({ faqCategories }) {
           }
         </Grid.Row>
       </Grid.Container>
-
-      <Footer />
     </Box>
   );
 }
