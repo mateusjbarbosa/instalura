@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 import propToStyle from '../../../theme/utils/propToStyle';
 import breakpointsMedia from '../../../theme/utils/breakpointsMedia';
 
+import Link from '../../commons/Link';
+
 const paragraph1 = css`
   ${({ theme }) => css`
     font-size: ${theme.typographyVariants.paragraph1.fontSize};
@@ -53,8 +55,22 @@ const TextBase = styled.span`
 `;
 
 export function Text({
-  variant, children, tag, ...props
+  variant, children, tag, href, ...props
 }) {
+  if (href) {
+    return (
+      <TextBase
+        as={Link}
+        variant={variant}
+        href={href}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...props}
+      >
+        {children}
+      </TextBase>
+    );
+  }
+
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
     <TextBase as={tag} variant={variant} {...props}>
@@ -67,10 +83,12 @@ Text.defaultProps = {
   tag: 'span',
   variant: 'paragraph1',
   children: null,
+  href: '',
 };
 
 Text.propTypes = {
   children: PropTypes.node,
   tag: PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'p', 'li', 'a', 'span', 'input']),
   variant: PropTypes.oneOf(['paragraph1', 'smallestException', 'title']),
+  href: PropTypes.string,
 };
