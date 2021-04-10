@@ -8,6 +8,7 @@
     "lint": "eslint --fix --ext .js,.jsx ."
   },
   "dependencies": {
+    "framer-motion": "^3.6.7",
     "lodash": "^4.17.20",
     "next": "latest",
     "prop-types": "^15.7.2",
