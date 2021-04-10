@@ -41,7 +41,7 @@ export default function Home() {
         )}
       </Modal>
 
-      <Menu />
+      <Menu onSignUpClick={() => setModalState(true)} />
 
       <Grid.Container marginTop={{ xs: '32px', md: '75px' }}>
         <Grid.Row>
