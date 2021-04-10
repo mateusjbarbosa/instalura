@@ -69,15 +69,21 @@ const ButtonWrapper = styled.button`
   ${propToStyle('display')}
 `;
 
-const Button = ({ href, ...props }) => {
-  const isLink = Boolean(href);
-  const componentTag = isLink ? Link : 'button';
+function Button({ href, children, ...props }) {
+  const hasHref = Boolean(href);
+  const tag = hasHref ? Link : 'button';
 
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <ButtonWrapper as={componentTag} href={href} {...props} />
+    <ButtonWrapper
+      as={tag}
+      href={href}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
+    >
+      {children}
+    </ButtonWrapper>
   );
-};
+}
 
 Button.defaultProps = {
   href: undefined,
@@ -85,6 +91,7 @@ Button.defaultProps = {
 
 Button.propTypes = {
   href: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Button;
