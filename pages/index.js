@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 
 import Footer from '../src/components/commons/Footer';
 import Menu from '../src/components/commons/Menu';
+
 import { Text } from '../src/components/foundation/Text';
+
 import Button from '../src/components/commons/Button';
+import Modal from '../src/components/commons/Modal';
+
 import Grid from '../src/components/layout/Grid';
 import Box from '../src/components/layout/Box';
-import Modal from '../src/components/commons/Modal';
+
 import FormRegister from '../src/components/patterns/Forms/Register';
+
+import SEO from '../src/components/commons/SEO';
 
 export default function Home() {
   const [isModalOpen, setModalState] = useState(false);
@@ -23,6 +29,8 @@ export default function Home() {
       backgroundRepeat="no-repeat"
       backgroundPosition="bottom right"
     >
+      <SEO headTitle="Home" />
+
       <Modal
         isOpen={isModalOpen}
         onClose={() => {
