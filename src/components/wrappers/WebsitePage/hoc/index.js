@@ -2,7 +2,7 @@ import React from 'react';
 
 import WebsitePageWrapper from '../index';
 
-import WebsiteGlobalProvider from '../../provider';
+import WebsiteGlobalProvider from '../provider';
 
 export default function websitePageHOC(PageComponent, { pageWrapperProps }) {
   return (props) => (

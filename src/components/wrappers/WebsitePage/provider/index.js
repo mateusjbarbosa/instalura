@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 
 import PropTypes from 'prop-types';
 
-import theme from '../../../theme';
-import GlobalStyle from '../../../theme/GlobalStyle';
+import theme from '../../../../theme';
+import GlobalStyle from '../../../../theme/GlobalStyle';
 
 export default function WebsiteGlobalProvider({ children }) {
   return (
