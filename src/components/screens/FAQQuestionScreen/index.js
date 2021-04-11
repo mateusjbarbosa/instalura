@@ -7,7 +7,7 @@ import { useTheme } from 'styled-components';
 import Grid from '../../layout/Grid';
 import Box from '../../layout/Box';
 
-import Text from '../../foundation/Text';
+import { Text } from '../../foundation/Text';
 
 export default function FAQQuestionScreen({ category, question }) {
   const theme = useTheme();
