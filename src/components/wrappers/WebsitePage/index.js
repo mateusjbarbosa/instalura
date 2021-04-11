@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -11,7 +11,7 @@ import Box from '../../layout/Box';
 
 import FormRegister from '../../patterns/Forms/Register';
 
-export const WebsitePageContext = React.createContext({
+export const WebsitePageContext = createContext({
   toggleRegisterModal: () => {},
 });
 
