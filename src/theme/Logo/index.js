@@ -64,9 +64,10 @@ export default function Logo({ size }) {
   );
 }
 
+Logo.defaultProps = {
+  size: 'small',
+};
+
 Logo.propTypes = {
-  size: PropTypes.arrayOf(PropTypes.shape({
-    width: PropTypes.number,
-    height: PropTypes.number,
-  })).isRequired,
+  size: PropTypes.string,
 };
