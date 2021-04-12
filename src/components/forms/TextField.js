@@ -44,14 +44,9 @@ export default function TextField({
   );
 }
 
-TextField.defaultProps = {
-  onChange: null,
-  value: '',
-};
-
 TextField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
-  value: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
 };
