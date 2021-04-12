@@ -7,7 +7,6 @@
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore .",
     "commit": "cz",
-    "test:open": "cypress open",
     "test:integration": "cypress run e2e --headless"
   },
   "dependencies": {
