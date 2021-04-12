@@ -1,10 +1,25 @@
 import React from 'react';
 
-export default function Logo() {
+import PropTypes from 'prop-types';
+
+const sizes = {
+  small: {
+    width: 96,
+    height: 24,
+  },
+  large: {
+    width: 186,
+    height: 46,
+  },
+};
+
+export default function Logo({ size }) {
+  const { width, height } = sizes[size] || sizes.small;
+
   return (
     <svg
-      width="96"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 131 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -48,3 +63,10 @@ export default function Logo() {
     </svg>
   );
 }
+
+Logo.propTypes = {
+  size: PropTypes.arrayOf(PropTypes.shape({
+    width: PropTypes.number,
+    height: PropTypes.number,
+  })).isRequired,
+};
