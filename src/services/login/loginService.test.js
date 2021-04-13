@@ -1,4 +1,4 @@
-import { loginService } from './loginService';
+import loginService from './loginService';
 
 const token = 'fake-token';
 
