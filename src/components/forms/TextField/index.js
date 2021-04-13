@@ -3,7 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Text } from '../foundation/Text';
+import { Text } from '../../foundation/Text';
 
 const InputWrapper = styled.div`
   margin-bottom: 17px;
