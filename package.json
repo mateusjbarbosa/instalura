@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore .",
     "commit": "cz",
-    "test:integration": "cypress run e2e --headless"
+    "test:integration": "cypress run --headless"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
