@@ -1,4 +1,4 @@
-import redirects from './redirects';
+import redirects from '.';
 
 describe('config/redirects', () => {
   test('renders all current redirects', () => {
