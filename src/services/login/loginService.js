@@ -42,7 +42,7 @@ const loginService = {
     })
       .then((response) => {
         const { token } = response.data;
-        if (!Boolean(hasToken)) {
+        if (!token) {
           throw new Error('Failed to login');
         }
 
