@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import { useForm } from './index';
+import useForm from '.';
 
 describe('useForm()', () => {
   describe('when user types', () => {
@@ -11,7 +11,7 @@ describe('useForm()', () => {
       }));
 
       const initialValues = { name: 'somename' };
-      
+
       expect(result.current.values).toEqual(initialValues);
 
       const event = {
