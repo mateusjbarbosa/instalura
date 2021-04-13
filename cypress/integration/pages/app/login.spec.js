@@ -1,13 +1,30 @@
 /// <reference types="cypress" />
 
-describe('app/login/', () => {
-  it('Should fill in the fields and go to the page app/profile/', () => {
-    cy.visit('/app/login/');
+import LoginScreenPageObject from '../../../../src/components/screens/app/loginScreen/LoginScreen.pageObject';
 
-    cy.get('#RegisterForm input[name="username"]').type('mateusjbarbosa');
-    cy.get('#RegisterForm input[name="password"]').type('senhasegura');
-    cy.get('#RegisterForm button[type="submit"]').click();
+const API_URL = 'https://instalura-api-git-master-omariosouto.vercel.app';
 
-    cy.url().should('include', '/app/profile');
+describe('/pages/app/login/', () => {
+  describe('when fill and submit a form login request', () => {
+    it('go to the profile page', () => {
+      cy.intercept(`${API_URL}/api/login`)
+        .as('userLogin');
+
+      const loginScreen = new LoginScreenPageObject(cy);
+
+      loginScreen
+        .fillLoginForm({ user: 'omariosouto', password: 'senhasegura' })
+        .submitLoginForm();
+
+      cy.url().should('include', '/app/profile');
+
+      cy.wait('@userLogin')
+        .then((intercept) => {
+          const { token } = intercept.response.body.data;
+          cy.getCookie('APP_TOKEN')
+            .should('exist')
+            .should('have.property', 'value', token);
+        });
+    });
   });
 });

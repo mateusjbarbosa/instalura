@@ -7,13 +7,14 @@
     "start": "next start",
     "lint": "eslint --ignore-path .gitignore .",
     "commit": "cz",
-    "test:integration": "cypress run e2e --headless"
+    "test:integration": "cypress run --headless"
   },
   "dependencies": {
     "@crello/react-lottie": "^0.0.11",
     "framer-motion": "^3.7.0",
     "lodash": "^4.17.20",
     "next": "latest",
+    "nookies": "^2.5.2",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
